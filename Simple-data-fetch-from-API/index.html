@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data for Countries</title>
+    <title>Data for selected country</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="main.js" type="module"></script>
 
 </head>
 <body>
 
     <div class="container">
-        <h2>Please type the name of the country: </h2>
-        <input type="text" id="country-input" placeholder="e.g., Romania">
-        <button id="fetch-data-btn">Fetch Data</button>
-    </div>
+        <div class="search-section">
+            <h2>Please type the name of the country: </h2>
+            <input type="text" id="country-input" placeholder="e.g., Romania">
+            <button id="fetch-data-btn">Fetch Data</button>
+        </div>
 
-    <div id="output"></div>
+        <div id="output" ></div>
+    </div>
 </body>
 </html>
