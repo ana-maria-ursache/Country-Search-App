@@ -10,27 +10,29 @@
 </head>
 <body>
 
-    <div class="container">
-        <div class="tabs">
+    <main class="container">
+        <nav class="tabs">
             <button class="tab-button active" id="main-tab">Home</button>
             <button class="tab-button" id="favorites-tab" style="display: none;">Favorites</button>
-        </div>
+        </nav>
 
-        <div id="main-page" class="page active">
-            <div>
-                <h2>Please type the name of the country: </h2>
-            </div>
-            <div class="search-section">
-                <div id="searches"></div>
-                <input type="text" id="country-input" placeholder="e.g., Romania">
-                <button id="fetch-data-btn">Fetch Data</button>
-            </div>
-            <div id="output"></div>
-        </div>
+        <section id="main-page" class="page active">
+            <header>
+                <p class="title">Please type the name of the country: <p>
+            </header>
+            <section class="search-section">
+                <article id="searches"></article>
+                <form onsubmit="return false;">
+                    <input type="text" id="country-input" placeholder="e.g., Romania">
+                    <button type="button" id="fetch-data-btn">Fetch Data</button>
+                </form>
+            </section>
+            <article id="output"></article>
+        </section>
 
-        <div id="favorites-page" class="page" style="display: none;">
-            <div id="favorites"></div>
-        </div>
-    </div>
+        <section id="favorites-page" class="page" style="display: none;">
+            <article id="favorites"></article>
+        </section>
+    </main>
 </body>
 </html>
