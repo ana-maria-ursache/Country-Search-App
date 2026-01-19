@@ -11,13 +11,26 @@
 <body>
 
     <div class="container">
-        <div class="search-section">
-            <h2>Please type the name of the country: </h2>
-            <input type="text" id="country-input" placeholder="e.g., Romania">
-            <button id="fetch-data-btn">Fetch Data</button>
+        <div class="tabs">
+            <button class="tab-button active" id="main-tab">Home</button>
+            <button class="tab-button" id="favorites-tab" style="display: none;">Favorites</button>
         </div>
 
-        <div id="output" ></div>
+        <div id="main-page" class="page active">
+            <div>
+                <h2>Please type the name of the country: </h2>
+            </div>
+            <div class="search-section">
+                <div id="searches"></div>
+                <input type="text" id="country-input" placeholder="e.g., Romania">
+                <button id="fetch-data-btn">Fetch Data</button>
+            </div>
+            <div id="output"></div>
+        </div>
+
+        <div id="favorites-page" class="page" style="display: none;">
+            <div id="favorites"></div>
+        </div>
     </div>
 </body>
 </html>
