@@ -3,10 +3,12 @@ body {
     background-color: #f0f2f5;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: flex-start;
+    min-height: 100vh;
     margin: 0;
     background-color: #ffe4f5;
+    padding: 20px 0;
+    overflow-x: hidden;
 }
 
 .container {
@@ -18,8 +20,43 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     text-align: center;
-    max-width: 400px;
-    width: 90%;
+    max-width: 600px;
+    width: 100%;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    border-bottom: 2px solid #ffe4f5;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #999;
+    cursor: pointer;
+    transition: 0.3s;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-button.active {
+    color: #e25aa4;
+    border-bottom: 3px solid #e25aa4;
+}
+
+.tab-button:hover {
+    color: #e25aa4;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
 }
 
 #country-input{
@@ -42,7 +79,17 @@ body {
     background-color: #8a175e;
 }
 
+.country-card-wrapper {
+    background: linear-gradient(135deg, #fff5fa 0%, #fff0f6 100%);
+    border: 2px solid #fce4ec;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(226, 90, 164, 0.15);
+    margin-top: 20px;
+}
+
 .country-card {
+    margin-top: 0;
     background: #ffffff;
     border-radius: 15px;
     padding: 20px;
@@ -83,17 +130,6 @@ body {
     margin-bottom: 20px;
 }
 
-.add-to-fave-btn {
-    display: block;        
-    margin: 20px auto 0;
-    text-align: center;
-    margin-top: 15px;
-    padding: 10px;
-    border: 1px dashed #76174b;
-    border-radius: 8px;
-    display: inline-block;
-}
-
 .error {
     color: red;
     font-weight: bold;
@@ -129,4 +165,72 @@ body {
 .search-item:hover {
     background: #e25aa4;
     color: white;
+}
+
+.favorites-star{
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.add-to-fave-btn {
+    display: block;        
+    text-align: center;
+    padding: 10px;
+    display: inline-block;
+    cursor: pointer;
+    color: #770e48;
+}
+
+.fave-button-container {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.favorite-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.favorite-item {
+    background: linear-gradient(135deg, #fff5fa 0%, #fff0f6 100%);
+    border: 2px solid #fce4ec;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    box-shadow: 0 8px 20px rgba(224, 147, 189, 0.15);
+}
+
+.favorite-item-content {
+    flex: 1;
+}
+
+.favorite-item img {
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.favorite-item h3 {
+    margin: 5px 0;
+    color: #8a175e;
+}
+
+.favorite-item p {
+    margin: 3px 0;
+    font-size: 13px;
+}
+
+.delete-fave-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #e25aa4;
+    padding: 0;
 }

@@ -13,17 +13,26 @@ export function saveSearchToLocalStorage(countryName) {
     }
 }
 
-export function addToFavorites(country) {
+export function toggleFavorite(countryCommonName) {
     let favorites = JSON.parse(localStorage.getItem('favCountries')) || [];
 
-    const isAlreadyFav = favorites.some(fav => fav.name.common === country.name.common);
-
-    if (!isAlreadyFav) {
-        favorites.push(country.name.official);
-        localStorage.setItem('favCountries', JSON.stringify(favorites));
+    const index = favorites.indexOf(countryCommonName);
+    
+    if (index > -1) {
+        favorites.splice(index, 1);
     } else {
-        alert('This country is already in the favorites list.');
+        favorites.push(countryCommonName);
     }
-
+    
+    localStorage.setItem('favCountries', JSON.stringify(favorites));
     return favorites;
+}
+
+export function isFavorited(countryCommonName) {
+    let favorites = JSON.parse(localStorage.getItem('favCountries')) || [];
+    return favorites.includes(countryCommonName);
+}
+
+export function addToFavorites(country) {
+    return toggleFavorite(country.name.common);
 }
