@@ -1,18 +1,19 @@
+@import './variables.css';
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f2f5;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
     margin: 0;
-    background-color: #ffe4f5;
+    background-color: var(--background);
     padding: 20px 0;
     overflow-x: hidden;
 }
 
 .container {
-    background: white;
+    background: var(--white);
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -25,7 +26,7 @@ body {
 }
 
 .title{
-    color: #5f0a39;
+    color: var(--dark-color);
     margin: 0;
     font-size: 1.8rem;
     font-weight: 700;
@@ -35,28 +36,28 @@ body {
 .tabs {
     display: flex;
     gap: 10px;
-    border-bottom: 2px solid #ffe4f5;
+    border-bottom: 2px solid var(--tabs-color);
     margin-bottom: 20px;
 }
 
 .tab-button {
     background: none;
+    color: var(--dark-color);
     border: none;
     padding: 10px 20px;
     font-size: 14px;
-    color: #999;
     cursor: pointer;
     transition: 0.3s;
     border-bottom: 3px solid transparent;
 }
 
 .tab-button.active {
-    color: #e25aa4;
-    border-bottom: 3px solid #e25aa4;
+    color: var(--pink-color);
+    border-bottom: 3px solid var(--pink-color);
 }
 
 .tab-button:hover {
-    color: #e25aa4;
+    color: var(--pink-color);
 }
 
 .page {
@@ -71,14 +72,15 @@ body {
     padding: 10px;
     border-radius: 5px;
     font-size: 12px;
-    border: 1px solid #5f0a39;
-    color: #5f0a39;
+    border: 1px solid var(--dark-color);
+    color: var(--dark-color);
 }
 
 #fetch-data-btn {
-    background-color: #e25aa4;
-    color: white;
+    background-color: var(--pink-color);
+    color: var(--white);
     border: none;
+    font-size: 14px;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
@@ -86,12 +88,12 @@ body {
 }
 
 #fetch-data-btn:hover {
-    background-color: #8a175e;
+    background-color: var(--dark-color);
 }
 
 .country-card-wrapper {
-    background: linear-gradient(135deg, #fff5fa 0%, #fff0f6 100%);
-    border: 2px solid #fce4ec;
+    background: linear-gradient(135deg, var(--light-pink-color2) 0%, var(--light-pink-color) 100%);
+    border: 2px solid var(--light-pink-color);
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0 8px 20px rgba(226, 90, 164, 0.15);
@@ -100,32 +102,32 @@ body {
 
 .country-card {
     margin-top: 0;
-    background: #ffffff;
+    background: var(--white);
     border-radius: 15px;
     padding: 20px;
     box-sizing: border-box;
-    border: 1px solid #fce4ec;
+    border: 1px solid var(--light-pink-color);
     box-shadow: 0 10px 25px rgba(226, 90, 164, 0.1);
 }
 
 .country-card h1 {
-    color: #8a175e;
+    color: var(--dark-color);
     font-size: 1.6rem;
     margin: 0 0 15px 0;
-    border-bottom: 2px solid #ffe4f5;
+    border-bottom: 2px solid var(--light-pink-color);
     padding-bottom: 10px;
 }
 
 .country-card p {
     margin: 8px 0;
-    color: #444;
+    color: var(--dark-color);
     font-size: 0.95rem;
     display: flex;
     justify-content: space-between; 
 }
 
 .country-card strong {
-    color: #e25aa4;
+    color: var(--pink-color);
     font-weight: 600;
 }
 
@@ -136,17 +138,16 @@ body {
     border-radius: 8px;
     margin-top: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    border: 1px solid #eee;
+    border: 1px solid var(--light-pink-color);
     margin-bottom: 20px;
 }
 
 .error {
-    color: red;
+    color: var(--red-color);
     font-weight: bold;
-    margin: 0;
+    margin-top: 10px;
     font-size: 12px;
 }
-
 
 #searches {
     margin-bottom: 15px;
@@ -162,19 +163,19 @@ body {
 .search-item {
     display: inline-block;
     justify-content: center;
-    background: #fff0f6;
-    border: 1px solid #fce4ec;
+    background: var(--light-pink-color);
+    border: 1px solid var(--light-pink-color);
     padding: 5px 15px;
     border-radius: 20px;
     margin: 5px; 
     font-size: 13px;
-    color: #e25aa4;
+    color: var(--pink-color);
     transition: 0.2s;
 }
 
 .search-item:hover {
-    background: #e25aa4;
-    color: white;
+    background: var(--pink-color);
+    color: var(--white);
 }
 
 .favorites-star{
@@ -191,10 +192,10 @@ body {
     padding: 10px;
     display: inline-block;
     cursor: pointer;
-    color: #5f0a39;
+    color: var(--dark-color);
     font-weight: bold;
     font-size: 14px;
-    background: #fff0f6;
+    background: var(--light-pink-color);
     border: transparent;
 }
 
@@ -210,14 +211,15 @@ body {
 }
 
 .favorite-item {
-    background: linear-gradient(135deg, #fff5fa 0%, #fff0f6 100%);
-    border: 2px solid #fce4ec;
+    background: linear-gradient(135deg, var(--light-pink-color2) 0%, var(--light-pink-color) 100%);
+    border: 2px solid var(--tabs-color);
     padding: 15px;
     border-radius: 15px;
     margin-bottom: 15px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    font-size: 18px;
     box-shadow: 0 8px 20px rgba(224, 147, 189, 0.15);
 }
 
@@ -232,7 +234,7 @@ body {
 
 .favorite-item h3 {
     margin: 5px 0;
-    color: #8a175e;
+    color: var(--dark-color);
 }
 
 .favorite-item p {
@@ -245,7 +247,7 @@ body {
     border: none;
     font-size: 24px;
     cursor: pointer;
-    color: #e25aa4;
+    color: var(--pink-color);
     padding: 0;
     align-self: flex-start;
     margin-left: 10px;
@@ -337,5 +339,9 @@ body {
 
     .delete-fave-btn {
         font-size: 20px;
+    }
+
+    .title{
+        font-size: 1.5rem;
     }
 }
