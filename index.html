@@ -7,19 +7,23 @@
     <title>Data for selected country</title>
     <link rel="stylesheet" href="style.css">
     <script src="main.js" type="module"></script>
-
 </head>
 <body>
-
-    <div class="pages-container">
-        <main class="container main-content">
-            <nav class="tabs">
-                <div id="theme-switcher">
+    <nav class="navbar">
+            <a href="#" class="brand-logo">Data Fetcher</a>
+            <!-- <ul class="nav-links">
+                <li><a href="#" id="home-link" class="nav-link active">Home</a></li>
+                <li><a href="#" id="favorites-link" class="nav-link">Favorites</a></li>
+            </ul> -->
+            <div id="theme-switcher">
                     <button id="theme-toggle" class="theme-button">
                         <img id="theme-icon" src="images/sun.png" alt="Theme Switcher">
                     </button>
                 </div>
-            </nav>
+    </nav>
+
+    <div class="pages-container">
+        <main class="container main-content">
 
             <section id="main-page" class="page active">
                 <header>
@@ -41,5 +45,9 @@
             <article id="favorites"></article>
         </aside>
     </div>
+
+    <footer class="footer">
+        <p class="footer-text">&copy; 2026 Data Fetcher. All rights reserved.</p>
+    </footer>
 </body>
 </html>

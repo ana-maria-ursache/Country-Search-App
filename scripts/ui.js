@@ -1,7 +1,6 @@
-import { addToFavorites, isFavorited, toggleFavorite } from './manageLocalStorage.js';
-
+import { addToFavorites, isFavorited, toggleFavorite, getCachedCountry, saveCountryToCache } from './manageLocalStorage.js';
 import { handleSearch } from './searchHandler.js';
-import { fetchCountryData } from './api.js';
+import {fetchCountryData} from './api.js';
 
 export async function refreshFavoritesTab() {
     const favoritesContainer = document.getElementById('favorites');
@@ -30,7 +29,7 @@ export function createCountryCard(country) {
     section.classList.add('country-card');
 
     section.innerHTML = `
-        <img src="${country.flags.svg}" alt="Flag" width="200">
+        <img class="image" src="${country.flags.svg}" alt="Flag" width="200">
         <h2 class="title-text-card">${country.name.common}</h2>
         <p class="text-card"><strong class="text-card">Capital:</strong> ${country.capital ? country.capital[0] : 'N/A'}</p>
         <p class="text-card"><strong class="text-card">Region:</strong> ${country.region}</p>
@@ -63,8 +62,8 @@ export function createCountryCard(country) {
 }
 
 export function createSearchCards(searches) {
-    const nav = document.createElement('nav');
-    nav.classList.add('search-card');
+    const element = document.createElement('div');
+    element.classList.add('search-card');
 
     const searchesArray = Array.isArray(searches) ? searches : [searches];
     const recent = searchesArray.slice(-5).reverse();
@@ -78,21 +77,31 @@ export function createSearchCards(searches) {
             input.value = c;
             await handleSearch(input, output);
         });
-        nav.appendChild(button);
+        element.appendChild(button);
     });
 
-    return nav;
+    return element;
 }
 
 export async function getMoreData(countryName) {
     try {
+        const cached = getCachedCountry(countryName);
+        if (cached) {
+            return Array.isArray(cached) ? cached[0] : cached;
+        }
+
         const countryData = await fetchCountryData(countryName);
+                if (countryData) {
+            saveCountryToCache(countryName, countryData);
+        }
+        
         return countryData;
     } catch (error) {
         console.error('Error fetching country data:', error);
         return null;
     }
 }
+
 
 export async function createFavoriteCards(favorites) {
     const section = document.createElement('section');
