@@ -1,0 +1,388 @@
+@import './variables.css';
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--background);
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.pages-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+}
+
+.container {
+    background: var(--background-card);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.container.main-content {
+    flex: 0 0 500px;
+    width: 500px;
+}
+
+.container.favorites-sidebar {
+    flex: 0 0 300px;
+    width: 300px;
+    border-left: 2px solid var(--tabs-color);
+    padding-left: 20px;
+    overflow-y: auto;
+}
+
+.title{
+    color: var(--dark-color);
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+
+.tabs {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    width: 100%;
+}
+
+.favorites-title {
+    color: var(--dark-color);
+    margin-top: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.text-card {
+    color: var(--text-card-color);
+}
+
+#country-input{
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    border: 1px solid var(--dark-color);
+    color: var(--input-text-color);
+}
+
+#fetch-data-btn {
+    background-color: var(--pink-color);
+    color: var(--button-text-color);
+    border: none;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#fetch-data-btn:hover {
+    background-color: var(--dark-color);
+}
+
+.country-card-wrapper {
+    background: linear-gradient(135deg, var(--light-pink-color2) 0%, var(--light-pink-color) 100%);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(226, 90, 164, 0.15);
+    margin-top: 20px;
+}
+
+.country-card {
+    margin-top: 0;
+    background: var(--background-country-card);
+    border-radius: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+    /* border: 1px solid var(--light-pink-color); */
+    box-shadow: 0 10px 25px rgba(226, 90, 164, 0.1);
+}
+
+.country-card p {
+    margin: 8px 0;
+    color: var(--category-text-color);
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between; 
+}
+
+.country-card a{
+    color: var(--category-text-color);
+}
+
+.title-text-card {
+    color: var(--category-text-color);
+}
+
+.title-text-card2 {
+    color: var(--fave-title-text-color);
+    font-size: 30px;
+    margin: 0 0 20px 0;
+}
+
+.favorite-item-img {
+    width: 30%;
+    margin-bottom: 40px;
+}
+
+.text-card2 {
+    color: var(--fave-text-color);
+    font-size: 14px;
+}
+
+.country-card strong {
+    color: var(--category-text-color);
+    font-weight: 600;
+}
+
+.country-card img {
+    width: 40%;
+    height: auto;
+    max-width: 250px;
+    border-radius: 8px;
+    margin-top: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+.error {
+    color: var(--red-color);
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+#searches {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.search-card {
+    border-radius: 12px;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+.search-item {
+    display: inline-block;
+    justify-content: center;
+    background: var(--searches-color);
+    border: none;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin: 5px; 
+    font-size: 13px;
+    color: var(--pink-color);
+    transition: 0.2s;
+}
+
+.search-item:hover {
+    background: var(--pink-color);
+    color: var(--background-card);
+}
+
+.favorites-star{
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.add-to-fave-btn {
+    display: block;        
+    text-align: center;
+    padding: 10px;
+    display: inline-block;
+    cursor: pointer;
+    color: var(--dark-color);
+    font-weight: bold;
+    font-size: 14px;
+    background: none;
+    border: transparent;
+}
+
+.fave-button-container {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.favorite-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.favorite-item {
+    background: linear-gradient(135deg, var(--light-pink-color2) 0%, var(--light-pink-color) 100%);
+    border: 2px solid var(--tabs-color);
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    box-shadow: 0 8px 20px rgba(224, 147, 189, 0.15);
+    position: relative;
+}
+
+.favorite-item-content {
+    flex: 1;
+    text-align: center;
+}
+
+.favorite-item img {
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+
+.favorite-item p {
+    margin: 3px 0;
+    font-size: 13px;
+}
+
+.delete-fave-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--star-color);
+    padding: 0;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+
+#theme-switcher {
+    display: flex;
+}
+
+.theme-button {
+    background: none;
+    border:none;
+
+    cursor: pointer;
+
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+}
+
+.theme-button:hover {
+    transform: scale(1.1);
+}
+
+.theme-button img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+
+@media (max-width: 900px) and (max-height: 500px) {
+    body {
+        padding: 10px 0;
+    }
+
+    .container {
+        max-width: 100%;
+        width: 95%;
+        padding: 1rem;
+        gap: 15px;
+    }
+
+    .tab-button {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    #country-input {
+        padding: 8px;
+        font-size: 11px;
+    }
+
+    #fetch-data-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+
+    .country-card-wrapper {
+        padding: 15px;
+        margin-top: 15px;
+    }
+
+    .country-card {
+        padding: 15px;
+    }
+
+
+    .country-card p {
+        margin: 6px 0;
+        font-size: 0.85rem;
+    }
+
+    .country-card img {
+        width: 30%;
+        margin: 10px 0;
+    }
+
+    .search-item {
+        padding: 4px 12px;
+        font-size: 11px;
+        margin: 3px;
+    }
+
+    .fave-button-container {
+        margin-top: 15px;
+        padding: 10px;
+    }
+
+    .add-to-fave-btn {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+
+    .favorite-item {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .favorite-item h3 {
+        font-size: 1.1rem;
+    }
+
+    .favorite-item p {
+        font-size: 11px;
+    }
+
+    .favorite-item img {
+        width: 60px;
+    }
+
+    .delete-fave-btn {
+        font-size: 20px;
+    }
+
+    .title{
+        font-size: 1.5rem;
+    }
+}
