@@ -1,4 +1,4 @@
-@import './variables.scss';
+@use './variables.scss';
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -38,7 +38,6 @@ body {
     &.favorites-sidebar {
         flex: 0 0 300px;
         width: 300px;
-        border-left: 2px solid var(--tabs-color);
         padding-left: 20px;
         overflow-y: auto;
     }

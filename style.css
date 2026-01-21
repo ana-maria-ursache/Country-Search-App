@@ -76,7 +76,6 @@ body {
 .container.favorites-sidebar {
   flex: 0 0 300px;
   width: 300px;
-  border-left: 2px solid var(--tabs-color);
   padding-left: 20px;
   overflow-y: auto;
 }
