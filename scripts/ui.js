@@ -5,14 +5,19 @@ import { fetchCountryData } from './api.js';
 
 export async function refreshFavoritesTab() {
     const favoritesContainer = document.getElementById('favorites');
+    const favoritesPage = document.getElementById('favorites-page');
     if (favoritesContainer) {
         const savedFavorites = JSON.parse(localStorage.getItem('favCountries')) || [];
         if (savedFavorites.length > 0) {
             const favoriteCards = await createFavoriteCards(savedFavorites);
             favoritesContainer.innerHTML = '';
             favoritesContainer.appendChild(favoriteCards);
+            favoritesPage.style.display = 'block';
+            favoritesPage.classList.add('active');
         } else {
             favoritesContainer.innerHTML = '';
+            favoritesPage.style.display = 'none';
+            favoritesPage.classList.remove('active');
         }
     }
 }

@@ -11,37 +11,35 @@
 </head>
 <body>
 
-    <main class="container">
-        <nav class="tabs">
-            <div>
-                <button class="tab-button active" id="main-tab">Home</button>
-                <button class="tab-button" id="favorites-tab" style="display: none;">Favorites</button>
-            </div>
-            <div id="theme-switcher">
-                <button id="theme-toggle" class="theme-button">
-                    <img id="theme-icon" src="images/sun.png" alt="Theme Switcher">
-                </button>
-            </div>
-        </nav>
+    <div class="pages-container">
+        <main class="container main-content">
+            <nav class="tabs">
+                <div id="theme-switcher">
+                    <button id="theme-toggle" class="theme-button">
+                        <img id="theme-icon" src="images/sun.png" alt="Theme Switcher">
+                    </button>
+                </div>
+            </nav>
 
-        <section id="main-page" class="page active">
-            <header>
-                <p class="title">Please type the name of the country: <p>
-            </header>
-            <section class="search-section">
-                <article id="searches"></article>
-                <form onsubmit="return false;">
-                    <input type="text" id="country-input" placeholder="e.g., Romania">
-                    <button type="button" id="fetch-data-btn">Fetch Data</button>
-                </form>
+            <section id="main-page" class="page active">
+                <header>
+                    <p class="title">Please type the name of the country: <p>
+                </header>
+                <section class="search-section">
+                    <article id="searches"></article>
+                    <form onsubmit="return false;">
+                        <input type="text" id="country-input" placeholder="e.g., Romania">
+                        <button type="button" id="fetch-data-btn">Fetch Data</button>
+                    </form>
+                </section>
+                <article id="output"></article>
             </section>
-            <article id="output"></article>
-        </section>
+        </main>
 
-        <section id="favorites-page" class="page" style="display: none;">
+        <aside class="container favorites-sidebar" id="favorites-page" style="display: none;">
+            <h2 class="favorites-title">Favorites</h2>
             <article id="favorites"></article>
-        </section>
-
-    </main>
+        </aside>
+    </div>
 </body>
 </html>
