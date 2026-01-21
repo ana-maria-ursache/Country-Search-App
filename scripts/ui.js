@@ -1,15 +1,6 @@
-import { addToFavorites, isFavorited, toggleFavorite } from './manageLocalStorage.js';
-
+import { addToFavorites, isFavorited, toggleFavorite, getCachedCountry, saveCountryToCache } from './manageLocalStorage.js';
 import { handleSearch } from './searchHandler.js';
-
-export async function fetchCountryData(countryName) {
-    const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`);
-    if (!response.ok) {
-        throw new Error('The country is not in out system:(!');
-    }
-    const data = await response.json();
-    return data[0];
-}
+import {fetchCountryData} from './api.js';
 
 export async function refreshFavoritesTab() {
     const favoritesContainer = document.getElementById('favorites');
@@ -94,13 +85,23 @@ export function createSearchCards(searches) {
 
 export async function getMoreData(countryName) {
     try {
+        const cached = getCachedCountry(countryName);
+        if (cached) {
+            return Array.isArray(cached) ? cached[0] : cached;
+        }
+
         const countryData = await fetchCountryData(countryName);
+                if (countryData) {
+            saveCountryToCache(countryName, countryData);
+        }
+        
         return countryData;
     } catch (error) {
         console.error('Error fetching country data:', error);
         return null;
     }
 }
+
 
 export async function createFavoriteCards(favorites) {
     const section = document.createElement('section');

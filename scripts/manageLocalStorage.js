@@ -36,3 +36,14 @@ export function isFavorited(countryCommonName) {
 export function addToFavorites(country) {
     return toggleFavorite(country.name.common);
 }
+
+export function getCachedCountry(countryName) {
+    const cache = JSON.parse(localStorage.getItem('countriesCache')) || {};
+    return cache[countryName.toLowerCase()] || null;
+}
+
+export function saveCountryToCache(countryName, countryData) {
+    const cache = JSON.parse(localStorage.getItem('countriesCache')) || {};
+    cache[countryName.toLowerCase()] = countryData;
+    localStorage.setItem('countriesCache', JSON.stringify(cache));
+}

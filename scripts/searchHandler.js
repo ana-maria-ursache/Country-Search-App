@@ -1,5 +1,5 @@
 import { createCountryCard, createSearchCards, renderToElement } from './ui.js';
-import {saveSearchToLocalStorage } from './manageLocalStorage.js';
+import { saveSearchToLocalStorage, getCachedCountry, saveCountryToCache } from './manageLocalStorage.js';
 
 
 export async function handleSearch(input, output, message) {
@@ -15,13 +15,23 @@ export async function handleSearch(input, output, message) {
     }
 
     try {
-        const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`);
-        
-        if (!response.ok) {
-            throw new Error('The country is not in out system:(!');
-        }
+        let countries;
+        const cachedData = getCachedCountry(countryName);
+        if (cachedData) {
+            countries = Array.isArray(cachedData) ? cachedData : [cachedData];
+        } else {
+            const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`);
+            
+            if (!response.ok) {
+                throw new Error('The country is not in out system:(!');
+            }
 
-        const countries = await response.json();
+            countries = await response.json();
+
+            if (countries.length > 0) {
+                saveCountryToCache(countryName, countries);
+            }
+        }
 
         const filtered = countries.filter(c => 
             c.name.common.toLowerCase().includes(countryName.toLowerCase())
@@ -32,11 +42,9 @@ export async function handleSearch(input, output, message) {
         }
 
         saveSearchToLocalStorage(filtered[0].name.common);
-
         const updatedHistory = JSON.parse(localStorage.getItem('searches')) || [];
         const historyCard = createSearchCards(updatedHistory);
         renderToElement(searchesContainer, historyCard);
-
         const resultsContainer = document.createElement('section');
         
         filtered.forEach(country => {
@@ -52,5 +60,4 @@ export async function handleSearch(input, output, message) {
         errorOnSearch.textContent = error.message;
         renderToElement(output, errorOnSearch);
     }
-
 }
