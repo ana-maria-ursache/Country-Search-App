@@ -9,7 +9,6 @@ body {
     min-height: 100vh;
     margin: 0;
     background-color: var(--background);
-    padding: 20px;
     overflow-x: hidden;
 
     nav{
@@ -51,7 +50,7 @@ body {
     footer{
         width: 80%;
         text-align: center;
-        margin-top: 40px;
+        margin-top: 20px;
         border-top: 1px solid var(--tabs-color);
 
         .footer-text{
@@ -293,8 +292,16 @@ body {
 
 .favorite-item-img {
     width: 30%;
+    height: 30%;
     margin-bottom: 40px;
 }
+
+.image {
+    width: 30%;
+    height: 30%;
+    margin-bottom: 40px;
+}
+
 
 .delete-fave-btn {
     background: none;

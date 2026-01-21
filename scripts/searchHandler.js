@@ -1,4 +1,3 @@
-import { fetchCountryData } from './api.js';
 import { createCountryCard, createSearchCards, renderToElement } from './ui.js';
 import {saveSearchToLocalStorage } from './manageLocalStorage.js';
 

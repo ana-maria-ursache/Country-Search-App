@@ -1,7 +1,15 @@
 import { addToFavorites, isFavorited, toggleFavorite } from './manageLocalStorage.js';
 
 import { handleSearch } from './searchHandler.js';
-import { fetchCountryData } from './api.js';
+
+export async function fetchCountryData(countryName) {
+    const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`);
+    if (!response.ok) {
+        throw new Error('The country is not in out system:(!');
+    }
+    const data = await response.json();
+    return data[0];
+}
 
 export async function refreshFavoritesTab() {
     const favoritesContainer = document.getElementById('favorites');
@@ -30,7 +38,7 @@ export function createCountryCard(country) {
     section.classList.add('country-card');
 
     section.innerHTML = `
-        <img src="${country.flags.svg}" alt="Flag" width="200">
+        <img class="image" src="${country.flags.svg}" alt="Flag" width="200">
         <h2 class="title-text-card">${country.name.common}</h2>
         <p class="text-card"><strong class="text-card">Capital:</strong> ${country.capital ? country.capital[0] : 'N/A'}</p>
         <p class="text-card"><strong class="text-card">Region:</strong> ${country.region}</p>
