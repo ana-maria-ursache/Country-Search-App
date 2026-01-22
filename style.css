@@ -19,7 +19,7 @@
   --fave-title-text-color: #4c072a;
 }
 :root.dark-theme {
-  --background: #1b0312;
+  --background: #31001e;
   --background-card: #610c34;
   --background-country-card: #950354;
   --dark-color: #fff3fa;
@@ -48,11 +48,12 @@ body {
   min-height: 100vh;
   margin: 0;
   background-color: var(--background);
-  padding: 20px;
+  padding: 0;
   overflow-x: hidden;
 }
 body nav {
   display: flex;
+  flex-shrink: 0;
   justify-content: space-between;
   align-items: center;
   width: 80%;
@@ -88,6 +89,7 @@ body nav #theme-switcher .theme-button img {
 }
 body .pages-container {
   display: flex;
+  flex: 1 0 auto;
   gap: 20px;
   justify-content: center;
   align-items: stretch;
@@ -97,6 +99,7 @@ body .pages-container .container {
   background: var(--background-card);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 20px;
   padding: 2rem;
   border-radius: 12px;
@@ -222,7 +225,6 @@ body .pages-container .container.main-content #output .country-card-wrapper .fav
 body .pages-container .container.favorites-sidebar {
   flex: 0 0 300px;
   width: 300px;
-  border-left: 2px solid var(--tabs-color);
   padding-left: 20px;
   overflow-y: auto;
 }
@@ -276,6 +278,8 @@ body .pages-container .container.favorites-sidebar .favorite-card .favorite-item
   right: 5px;
 }
 body footer {
+  flex-shrink: 0;
+  margin-top: auto;
   width: 80%;
   text-align: center;
   margin-top: 20px;

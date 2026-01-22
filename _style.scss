@@ -15,11 +15,12 @@ body {
     min-height: 100vh;
     margin: 0;
     background-color: var(--background);
-    padding: 20px;
+    padding: 0;
     overflow-x: hidden;
 
     nav {
         display: flex;
+        flex-shrink:0;
         justify-content: space-between;
         align-items: center;
         width: 80%;
@@ -59,6 +60,7 @@ body {
 
     .pages-container {
         display: flex;
+        flex: 1 0 auto;
         gap: 20px;
         justify-content: center;
         align-items: stretch;
@@ -68,6 +70,7 @@ body {
             background: var(--background-card);
             display: flex;
             flex-direction: column;
+            justify-content: center;
             gap: 20px;
             padding: 2rem;
             border-radius: 12px;
@@ -215,7 +218,6 @@ body {
             &.favorites-sidebar {
                 flex: 0 0 300px;
                 width: 300px;
-                border-left: 2px solid var(--tabs-color);
                 padding-left: 20px;
                 overflow-y: auto;
 
@@ -281,6 +283,8 @@ body {
     }
 
     footer {
+        flex-shrink: 0; // Ensures footer maintains its size
+        margin-top: auto;
         width: 80%;
         text-align: center;
         margin-top: 20px;
