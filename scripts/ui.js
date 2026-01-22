@@ -5,6 +5,7 @@ import {fetchCountryData} from './api.js';
 export async function refreshFavoritesTab() {
     const favoritesContainer = document.getElementById('favorites');
     const favoritesPage = document.getElementById('favorites-page');
+    
     if (favoritesContainer) {
         const savedFavorites = JSON.parse(localStorage.getItem('favCountries')) || [];
         if (savedFavorites.length > 0) {
@@ -101,7 +102,6 @@ export async function getMoreData(countryName) {
         return null;
     }
 }
-
 
 export async function createFavoriteCards(favorites) {
     const section = document.createElement('section');
