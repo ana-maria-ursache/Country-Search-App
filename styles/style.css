@@ -105,6 +105,63 @@ body .pages-container .container {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
+body .pages-container .container.traveled-sidebar {
+  flex: 0 0 300px;
+  width: 300px;
+  overflow-y: auto;
+}
+body .pages-container .container.traveled-sidebar.active {
+  animation: slideInRight 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+body .pages-container .container.traveled-sidebar .main-traveled-title {
+  color: var(--dark-color);
+  margin: 0 0 20px 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+body .pages-container .container.traveled-sidebar #traveled .traveled-card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+body .pages-container .container.traveled-sidebar #traveled .traveled-card-container .traveled-item {
+  background: linear-gradient(135deg, var(--light-pink-color2) 0%, var(--light-pink-color) 100%);
+  border: 2px solid var(--tabs-color);
+  padding: 15px 0;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(224, 147, 189, 0.15);
+  animation: slideInUp 0.3s ease-out forwards;
+  transition: transform 0.2s ease;
+}
+body .pages-container .container.traveled-sidebar #traveled .traveled-card-container .traveled-item.removing {
+  animation: fadeScaleOut 0.3s ease-in forwards;
+}
+body .pages-container .container.traveled-sidebar #traveled .traveled-card-container .traveled-item .traveled-item-content {
+  text-align: center;
+}
+body .pages-container .container.traveled-sidebar #traveled .traveled-card-container .traveled-item .traveled-item-content .traveled-item-img {
+  width: 30%;
+  height: 30%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+body .pages-container .container.traveled-sidebar #traveled .traveled-card-container .traveled-item .traveled-item-content .traveled-title {
+  color: var(--fave-title-text-color);
+  font-size: 1rem;
+  margin: 0;
+}
+body .pages-container .container.traveled-sidebar #traveled .traveled-card-container .traveled-item .delete-traveled-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--star-color);
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
 body .pages-container .container.main-content {
   flex: 0 0 500px;
   width: 500px;
@@ -213,8 +270,19 @@ body .pages-container .container.main-content #output .country-card-wrapper .cou
 }
 body .pages-container .container.main-content #output .country-card-wrapper .fave-button-container {
   margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
 }
 body .pages-container .container.main-content #output .country-card-wrapper .fave-button-container .add-to-fave-btn {
+  cursor: pointer;
+  color: var(--dark-color);
+  font-weight: bold;
+  font-size: 14px;
+  background: none;
+  border: none;
+}
+body .pages-container .container.main-content #output .country-card-wrapper .fave-button-container .add-to-travel-btn {
   cursor: pointer;
   color: var(--dark-color);
   font-weight: bold;
@@ -225,7 +293,6 @@ body .pages-container .container.main-content #output .country-card-wrapper .fav
 body .pages-container .container.favorites-sidebar {
   flex: 0 0 300px;
   width: 300px;
-  padding-left: 20px;
   overflow-y: auto;
 }
 body .pages-container .container.favorites-sidebar.active {
@@ -352,7 +419,6 @@ body footer .footer-text {
     max-width: 500px;
     flex: none;
     border-left: none;
-    padding-left: 1.5rem;
     margin: 0 auto;
   }
   body .pages-container .container.main-content .title {

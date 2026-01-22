@@ -1,5 +1,5 @@
 import { handleSearch } from './scripts/searchHandler.js';
-import { createSearchCards, createFavoriteCards, renderToElement } from './scripts/ui.js';
+import { createSearchCards, createFavoriteCards, renderToElement, createTraveledCards } from './scripts/ui.js';
 import { cycleTheme } from './scripts/themes.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,8 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const output = document.getElementById('output');
     const searchesContainer = document.getElementById('searches');
     const favoritesContainer = document.getElementById('favorites');
+    const traveledContainer = document.getElementById('traveled');
+    const traveledPage = document.getElementById('traveled-page');
 
-    const mainPage = document.getElementById('main-page');
     const favoritesPage = document.getElementById('favorites-page');
 
     const savedHistory = JSON.parse(localStorage.getItem('searches')) || [];
@@ -27,6 +28,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         favoritesPage.style.display = 'block';
         favoritesPage.classList.add('active');
+    }
+
+    const savedTraveled = JSON.parse(localStorage.getItem('traveled')) || [];
+    
+    if (savedTraveled.length > 0) {
+        createTraveledCards(savedTraveled).then(traveledCards => {
+            renderToElement(traveledContainer, traveledCards);
+        });
+        traveledPage.style.display = 'block';
+        traveledPage.classList.add('active');
     }
     
     button.addEventListener('click', async () => handleSearch(input, output, 'Please enter a country name.'));

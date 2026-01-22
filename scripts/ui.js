@@ -1,6 +1,14 @@
-import { addToFavorites, isFavorited, toggleFavorite, getCachedCountry, saveCountryToCache } from './manageLocalStorage.js';
+import { isFavorited, isTraveled , toggleFavorite, toggleTraveled, getCachedCountry, saveCountryToCache } from './manageLocalStorage.js';
 import { handleSearch } from './searchHandler.js';
-import {fetchCountryData} from './api.js';
+
+export async function fetchCountryData(countryName) {
+    const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`);
+    if (!response.ok) {
+        throw new Error('The country is not in out system:(!');
+    }
+    const data = await response.json();
+    return data[0];
+}
 
 export async function refreshFavoritesTab() {
     const favoritesContainer = document.getElementById('favorites');
@@ -18,6 +26,27 @@ export async function refreshFavoritesTab() {
             favoritesContainer.innerHTML = '';
             favoritesPage.style.display = 'none';
             favoritesPage.classList.remove('active');
+        }
+    }
+}
+
+export async function refreshTraveledTab() {
+    const traveledContainer = document.getElementById('traveled');
+    const traveledPage = document.getElementById('traveled-page');
+    
+    if (traveledContainer) {
+        const savedTraveled = JSON.parse(localStorage.getItem('traveled')) || [];
+        
+        if (savedTraveled.length > 0) {
+            const traveledCards = await createTraveledCards(savedTraveled);
+            traveledContainer.innerHTML = '';
+            traveledContainer.appendChild(traveledCards);
+            if (traveledPage) traveledPage.style.display = 'block';
+            traveledPage.classList.add('active');
+        } else {
+            traveledContainer.innerHTML = '';
+            if (traveledPage) traveledPage.style.display = 'none';
+            traveledPage.classList.remove('active');
         }
     }
 }
@@ -43,17 +72,32 @@ export function createCountryCard(country) {
     const isFav = isFavorited(country.name.common);
     const starIcon = isFav ? 'Delete from favorites' : 'Add to favorites';
 
+    const isTrav = isTraveled(country.name.common);
+    const planeIcon = isTrav ? 'Mark as not traveled' : 'Mark as traveled';
+
     const aside = document.createElement('aside');
     aside.classList.add('fave-button-container');
+
     const button = document.createElement('button');
     button.className = 'add-to-fave-btn';
     button.textContent = starIcon;
     aside.appendChild(button);
 
+    const travelButton = document.createElement('button');
+    travelButton.className = 'add-to-travel-btn';
+    travelButton.textContent = planeIcon;
+    aside.appendChild(travelButton);
+
     button.addEventListener('click', () => {
         toggleFavorite(country.name.common);
         button.textContent = isFavorited(country.name.common) ? 'Delete from favorites' : 'Add to favorites';
         refreshFavoritesTab();
+    });
+
+    travelButton.addEventListener('click', () => {
+        toggleTraveled(country.name.common);
+        travelButton.textContent = isTraveled(country.name.common) ? 'Mark as not traveled' : 'Mark as traveled';
+        refreshTraveledTab();
     });
 
     article.appendChild(section);
@@ -143,6 +187,49 @@ export async function createFavoriteCards(favorites) {
             toggleFavorite(countryToRemove);
             btn.closest('.favorite-item').remove();
             await refreshFavoritesTab();
+        });
+    });
+
+    return section;
+}
+
+export async function createTraveledCards(traveledList) {
+    const section = document.createElement('section');
+    section.classList.add('traveled-card-container');
+
+    for (const countryName of traveledList) {
+        const countryData = await getMoreData(countryName);
+        
+        if (countryData) {
+            const article = document.createElement('article');
+            article.className = 'traveled-item';
+            
+            article.innerHTML = `
+                <section class="traveled-item-content" style="cursor: pointer;">
+                    <img class="traveled-item-img" src="${countryData.flags.svg}" alt="${countryData.name.common} flag">
+                    <h4 class="traveled-title">${countryData.name.common}</h4>
+                </section>
+                <button class="delete-traveled-btn" data-country="${countryName}">x</button>
+
+            `;
+            const content = article.querySelector('.traveled-item-content');
+            content.addEventListener('click', async () => {
+                const input = document.getElementById('country-input');
+                const output = document.getElementById('output');
+                input.value = countryData.name.common;
+                await handleSearch(input, output);
+            });
+            section.appendChild(article);
+        }
+    }
+
+    const deleteButtons = section.querySelectorAll('.delete-traveled-btn');
+    deleteButtons.forEach(btn => {
+        btn.addEventListener('click', async () => {
+            const countryToRemove = btn.getAttribute('data-country');
+            toggleTraveled(countryToRemove);
+            btn.closest('.traveled-item').remove();
+            await refreshTraveledTab();
         });
     });
 
