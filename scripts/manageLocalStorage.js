@@ -13,6 +13,8 @@ export function saveSearchToLocalStorage(countryName) {
     }
 }
 
+// favorite countries management
+
 export function toggleFavorite(countryCommonName) {
     let favorites = JSON.parse(localStorage.getItem('favCountries')) || [];
 
@@ -46,4 +48,30 @@ export function saveCountryToCache(countryName, countryData) {
     const cache = JSON.parse(localStorage.getItem('countriesCache')) || {};
     cache[countryName.toLowerCase()] = countryData;
     localStorage.setItem('countriesCache', JSON.stringify(cache));
+}
+
+// traveled countries management    
+
+export function toggleTraveled(countryCommonName) {
+    let traveled = JSON.parse(localStorage.getItem('traveled')) || [];
+
+    const index = traveled.indexOf(countryCommonName);
+    
+    if (index > -1) {
+        traveled.splice(index, 1);
+    } else {
+        traveled.push(countryCommonName);
+    }
+    
+    localStorage.setItem('traveled', JSON.stringify(traveled));
+    return traveled;
+}
+
+export function isTraveled(countryCommonName) {
+    let traveled = JSON.parse(localStorage.getItem('traveled')) || [];
+    return traveled.includes(countryCommonName);
+}
+
+export function addToTraveled(country) {
+    return toggleTraveled(country.name.common);
 }

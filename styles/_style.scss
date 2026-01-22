@@ -76,6 +76,78 @@ body {
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
 
+            &.traveled-sidebar {
+                flex: 0 0 300px;
+                width: 300px;
+                overflow-y: auto;
+
+                &.active {
+                    animation: slideInRight 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+                }
+
+                .main-traveled-title {
+                    color: var(--dark-color);
+                    margin: 0 0 20px 0;
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                }
+
+                // JS Generated Traveled Cards
+                #traveled{
+                .traveled-card-container {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    gap: 15px;
+
+                    .traveled-item {
+                        background: linear-gradient(135deg, var(--light-pink-color2) 0%, var(--light-pink-color) 100%);
+                        border: 2px solid var(--tabs-color);
+                        padding: 15px 0;
+                        border-radius: 15px;
+                        position: relative;
+                        box-shadow: 0 8px 20px rgba(224, 147, 189, 0.15);
+
+                        animation: slideInUp 0.3s ease-out forwards;
+                        transition: transform 0.2s ease;
+
+                        &.removing {
+                            animation: fadeScaleOut 0.3s ease-in forwards;
+                        }
+
+                        .traveled-item-content{
+                            text-align: center;
+
+                            .traveled-item-img{
+                                width: 30%;
+                                height: 30%;
+                                border-radius: 5px;
+                                margin-bottom: 10px;
+                            }
+
+                            .traveled-title{
+                                color: var(--fave-title-text-color);
+                                font-size: 1rem;
+                                margin:  0;
+                            }
+                        }
+
+                        
+                        .delete-traveled-btn {
+                            background: none;
+                            border: none;
+                            font-size: 24px;
+                            cursor: pointer;
+                            color: var(--star-color);
+                            position: absolute;
+                            top: 5px;
+                            right: 5px;
+                        }
+                    }
+                }
+                }
+            }
+
             &.main-content {
                 flex: 0 0 500px;
                 width: 500px;
@@ -202,8 +274,20 @@ body {
 
                         .fave-button-container {
                             margin-top: 15px;
+                            display: flex;
+                            justify-content: center;
+                            gap: 30px;
 
                             .add-to-fave-btn {
+                                cursor: pointer;
+                                color: var(--dark-color);
+                                font-weight: bold;
+                                font-size: 14px;
+                                background: none;
+                                border: none;
+                            }
+
+                            .add-to-travel-btn {
                                 cursor: pointer;
                                 color: var(--dark-color);
                                 font-weight: bold;
@@ -219,7 +303,6 @@ body {
             &.favorites-sidebar {
                 flex: 0 0 300px;
                 width: 300px;
-                padding-left: 20px;
                 overflow-y: auto;
 
                 &.active {
@@ -377,7 +460,6 @@ body {
                     max-width: 500px;
                     flex: none;
                     border-left: none;
-                    padding-left: 1.5rem;
                     margin: 0 auto;
                 }
 
