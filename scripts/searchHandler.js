@@ -47,7 +47,6 @@ export async function handleSearch(input, output, message) {
         renderToElement(searchesContainer, historyCard);
         const resultsContainer = document.createElement('section');
 
-        //TODO: do i need this class?
         resultsContainer.className = 'results-container';
         
         filtered.forEach(country => {
