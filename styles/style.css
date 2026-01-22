@@ -150,6 +150,7 @@ body .pages-container .container.traveled-sidebar #traveled .traveled-card-conta
 body .pages-container .container.traveled-sidebar #traveled .traveled-card-container .traveled-item .traveled-item-content .traveled-title {
   color: var(--fave-title-text-color);
   font-size: 1rem;
+  font-weight: bold;
   margin: 0;
 }
 body .pages-container .container.traveled-sidebar #traveled .traveled-card-container .traveled-item .delete-traveled-btn {
@@ -414,7 +415,7 @@ body footer .footer-text {
     flex-direction: column;
     align-items: center;
   }
-  body .pages-container .container.main-content, body .pages-container .container.favorites-sidebar {
+  body .pages-container .container.main-content, body .pages-container .container.favorites-sidebar, body .pages-container .container.traveled-sidebar {
     width: 90%;
     max-width: 500px;
     flex: none;
@@ -426,6 +427,9 @@ body footer .footer-text {
   }
   body .pages-container .container.favorites-sidebar {
     max-height: none;
+  }
+  body .pages-container .container.traveled-sidebar {
+    order: 2;
   }
 }
 

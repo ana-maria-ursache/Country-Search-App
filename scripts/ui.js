@@ -207,7 +207,7 @@ export async function createTraveledCards(traveledList) {
             article.innerHTML = `
                 <section class="traveled-item-content" style="cursor: pointer;">
                     <img class="traveled-item-img" src="${countryData.flags.svg}" alt="${countryData.name.common} flag">
-                    <h4 class="traveled-title">${countryData.name.common}</h4>
+                    <div class="traveled-title">${countryData.name.common}</div>
                 </section>
                 <button class="delete-traveled-btn" data-country="${countryName}">x</button>
 

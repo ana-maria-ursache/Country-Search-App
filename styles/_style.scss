@@ -128,6 +128,7 @@ body {
                             .traveled-title{
                                 color: var(--fave-title-text-color);
                                 font-size: 1rem;
+                                font-weight: bold;
                                 margin:  0;
                             }
                         }
@@ -455,7 +456,8 @@ body {
 
             .container {
                 &.main-content, 
-                &.favorites-sidebar {
+                &.favorites-sidebar,
+                &.traveled-sidebar {
                     width: 90% ;
                     max-width: 500px;
                     flex: none;
@@ -469,6 +471,10 @@ body {
                 
                 &.favorites-sidebar {
                     max-height: none;
+                }
+
+                &.traveled-sidebar {
+                    order:2;
                 }
             }
         }
