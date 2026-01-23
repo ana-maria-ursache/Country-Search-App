@@ -51,7 +51,6 @@ export function saveCountryToCache(countryName, countryData) {
 }
 
 // traveled countries management    
-
 export function toggleTraveled(countryCommonName) {
     let traveled = JSON.parse(localStorage.getItem('traveled')) || [];
 
@@ -74,4 +73,36 @@ export function isTraveled(countryCommonName) {
 
 export function addToTraveled(country) {
     return toggleTraveled(country.name.common);
+}
+
+
+// export localStorage data as JSON file
+export function exportLocalStorage() {
+    const searches = JSON.parse(localStorage.getItem('searches')) || [];
+    const favCountries = JSON.parse(localStorage.getItem('favCountries')) || [];
+    const traveled = JSON.parse(localStorage.getItem('traveled')) || [];
+
+    const formatList = (list) => {
+        if (list.length === 0) return "---> No items found";
+        return list.map(item => `---> ${item}`).join('\n');
+    };
+
+    let readableContent = "\n\n";
+
+    readableContent = "Recent searches:\n";
+    readableContent += formatList(searches) + "\n\n";
+
+    readableContent += "Favorite countries:\n";
+    readableContent += formatList(favCountries) + "\n\n";
+
+    readableContent += "Countries you have traveled to:\n";
+    readableContent += formatList(traveled);
+
+    const dataStr = "data:text/plain;charset=utf-8," + encodeURIComponent(readableContent);
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "exportData.txt");
+    document.body.appendChild(downloadAnchorNode); 
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
 }

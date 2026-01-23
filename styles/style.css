@@ -67,10 +67,10 @@ body nav .brand-logo {
   color: var(--dark-color);
   text-decoration: none;
 }
-body nav #theme-switcher {
+body nav #options {
   display: flex;
 }
-body nav #theme-switcher .theme-button {
+body nav #options .theme-button {
   background: none;
   border: none;
   cursor: pointer;
@@ -79,12 +79,29 @@ body nav #theme-switcher .theme-button {
   justify-content: center;
   align-items: center;
 }
-body nav #theme-switcher .theme-button:hover {
+body nav #options .theme-button:hover {
   transform: scale(1.1);
 }
-body nav #theme-switcher .theme-button img {
+body nav #options .theme-button img {
   width: 20px;
   height: 20px;
+  object-fit: contain;
+}
+body nav #options .export-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body nav #options .export-button:hover {
+  transform: scale(1.1);
+}
+body nav #options .export-button img {
+  width: 30px;
+  height: 30px;
   object-fit: contain;
 }
 body .pages-container {

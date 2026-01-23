@@ -1,6 +1,7 @@
 import { handleSearch } from './scripts/searchHandler.js';
 import { createSearchCards, createFavoriteCards, renderToElement, createTraveledCards } from './scripts/ui.js';
 import { cycleTheme } from './scripts/themes.js';
+import { exportLocalStorage } from './scripts/manageLocalStorage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('country-input');
@@ -10,9 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const favoritesContainer = document.getElementById('favorites');
     const traveledContainer = document.getElementById('traveled');
     const traveledPage = document.getElementById('traveled-page');
-
+    const exportBtn = document.querySelector('.export-button'); 
     const favoritesPage = document.getElementById('favorites-page');
-
     const savedHistory = JSON.parse(localStorage.getItem('searches')) || [];
 
     if (savedHistory.length > 0) {
@@ -52,6 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (themeToggle) {
         themeToggle.addEventListener('click', cycleTheme);
     }
+
+    if (exportBtn) {
+    exportBtn.addEventListener('click', exportLocalStorage);
+}
 
 });
 

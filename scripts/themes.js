@@ -24,15 +24,19 @@ export function cycleTheme() {
 
 function updateThemeIcon() {
     const themeIcon = document.getElementById('theme-icon');
-    if (themeIcon) {
-        themeIcon.src = themeConfig[currentThemeIndex].image;
+    const exportIcon = document.getElementById('export-icon'); 
+    
+    const icons = [themeIcon, exportIcon].filter(icon => icon !== null);
 
-        if (currentThemeIndex === 1) {  
-            themeIcon.style.filter = 'invert(1)';
-        } else {
-            themeIcon.style.filter = 'invert(0)';
+    icons.forEach(icon => {
+        icon.src = icon.id === 'theme-icon' ? themeConfig[currentThemeIndex].image : icon.src;
+
+        if (currentThemeIndex === 1) { 
+            icon.style.filter = 'invert(1)';
+        } else { 
+            icon.style.filter = 'invert(0)';
         }
-    }
+    });
 }
 
 const savedTheme = localStorage.getItem('theme');
